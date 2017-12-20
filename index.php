@@ -698,23 +698,26 @@ Image credits: unsplash.com
 				<hr>
 				<br>
 				<br>
-<?
+<?php
 include"admin/koneksi.php";
-$ambildata2=mysql_query("SELECT * FROM team ");
-while($data2=mysql_fetch_array($ambildata2))
+$ambildata21="SELECT * FROM team ";
+$ambildata2=mysqli_query($con, $ambildata21);
+while($data2=mysqli_fetch_array($ambildata2))
 {
-$keterangan=substr($data2[keterangan],0,150);
+$keterangan=substr("$data2[keterangan]",0,150);
 ?>
 				<div class="col-lg-3 centered">
-					<img class="img img-circle" src="admin/images/<?echo"$data2[foto]";?>" height="120px" width="120px" alt="">
+					<img class="img img-circle" src="admin/images/<?php echo"$data2[foto]";?>" height="120px" width="120px" alt="">
 					<br>
-					<h4><b><?echo"$data2[nama]";?> <br>(<?echo"$data2[jabatan]";?>)</b></h4>
-					<a href="<?echo"$data2[tw]";?>" class="icon icon-twitter"></a>
-					<a href="<?echo"$data2[fb]";?>" class="icon icon-facebook"></a>
+					<h4><b><?php echo"$data2[nama]";?> <br>(<?php echo"$data2[jabatan]";?>)</b></h4>
+					<a href="<?php echo"$data2[tw]";?>" class="icon icon-twitter"></a>
+					<a href="<?php echo"$data2[fb]";?>" class="icon icon-facebook"></a>
 					<a href="#" class="icon icon-flickr"></a>
-					<p><?echo"$keterangan";?>..</p>
+					<p><?php echo"$keterangan";?>..</p>
 				</div><!-- col-lg-3 -->
-<?}?>				
+<?php
+}
+?>				
 
 				
 			</div><!-- row -->
@@ -730,7 +733,7 @@ $keterangan=substr($data2[keterangan],0,150);
 					<div class="col-lg-4">
 						<h2>We Are Hiring!</h2>
 						<p>Do you want to be one of use? Sure you want, because we are an awesome team!. Here we work hard every day to craft pixel perfect sites.</p>
-						<p><a href="#contact" class="btn btn-primary" >Contact Us</a></p>
+						<p><a href="#contact" class="btn btn-primary smoothScroll" >Contact Us</a></p>
 					</div>					
 				</div><!-- row -->
 			</div>
@@ -753,20 +756,21 @@ $keterangan=substr($data2[keterangan],0,150);
 			<div class="row">	
 						
 
-<?
+<?php
 include"admin/koneksi.php";
-$ambildata=mysql_query("SELECT * FROM portofolio where tempat='atas' ");
-while($data=mysql_fetch_array($ambildata))
+$sqlPortofolio="SELECT * FROM portofolio where tempat='atas'";
+$queryPortofolio=mysqli_query($con, $sqlPortofolio);
+while($data=mysqli_fetch_array($queryPortofolio))
 {
 ?>
 				<!-- PORTFOLIO IMAGE 1 -->
 				<div class="col-md-4 ">
 			    	<div class="grid mask">
 						<figure>
-							<img class="img-responsive" src="admin/images/<?echo"$data[gambar]";?>" alt="">
+							<img class="img-responsive" src="admin/images/<?php echo"$data[gambar]";?>" alt="">
 							<figcaption>
-								<h5><?echo"$data[nama]";?> </h5>
-								<a data-toggle="modal" href="#myModal<?echo"$data[kode]";?>" class="btn btn-primary btn-lg" target="_blank">Lihat</a>
+								<h5><?php echo"$data[nama]";?> </h5>
+								<a data-toggle="modal" href="#myModal<?php echo"$data[kode]";?>" class="btn btn-primary btn-lg" target="_blank">Lihat</a>
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->
 			    	</div><!-- /grid-mask -->
@@ -776,17 +780,17 @@ while($data=mysql_fetch_array($ambildata))
 						 <!-- MODAL SHOW THE PORTFOLIO IMAGE. In this demo, all links point to this modal. You should create
 						      a modal for each of your projects. -->
 						      
-						  <div class="modal fade" id="myModal<?echo"$data[kode]";?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal fade" id="myModal<?php echo"$data[kode]";?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						    <div class="modal-dialog">
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						          <h4 class="modal-title"><?echo"$data[nama]";?></h4>
+						          <h4 class="modal-title"><?php echo"$data[nama]";?></h4>
 						        </div>
 						        <div class="modal-body">
-						          <p><img class="img-responsive" src="admin/images/<?echo"$data[gambar]";?>" alt=""></p>
-						          <p><?echo"$data[keterangan]";?></p>
-						          <p><b><a href="<?echo"$data[alamat]";?>" target="_blank">Visit Site</a></b></p>
+						          <p><img class="img-responsive" src="admin/images/<?php echo"$data[gambar]";?>" alt=""></p>
+						          <p><?php echo"$data[keterangan]";?></p>
+						          <p><b><a href="<?php echo"$data[alamat]";?>" target="_blank">Visit Site</a></b></p>
 						        </div>
 						        <div class="modal-footer">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -795,49 +799,9 @@ while($data=mysql_fetch_array($ambildata))
 						    </div><!-- /.modal-dialog -->
 						  </div><!-- /.modal -->
 				
-<?}?>		
-<?
-include"admin/koneksi.php";
-$ambildata3=mysql_query("SELECT * FROM portofolio where tempat='bawah' ");
-while($data3=mysql_fetch_array($ambildata3))
-{
-?>
-				<!-- PORTFOLIO IMAGE 1 -->
-				<div class="col-md-4 ">
-			    	<div class="grid mask">
-						<figure>
-							<img class="img-responsive" src="admin/images/<?echo"$data3[gambar]";?>" alt="">
-							<figcaption>
-								<h5><?echo"$data3[nama]";?> </h5>
-								<a data-toggle="modal" href="#myModal<?echo"$data3[kode]";?>" name="a" class="btn btn-primary btn-lg" target="_blank">Lihat</a>
-							</figcaption><!-- /figcaption -->
-						</figure><!-- /figure -->
-			    	</div><!-- /grid-mask -->
-				</div><!-- /col -->
-				
-										 <!-- MODAL SHOW THE PORTFOLIO IMAGE. In this demo, all links point to this modal. You should create
-						      a modal for each of your projects. -->
-						      
-						  <div class="modal fade" id="myModal<?echo"$data3[kode]";?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						    <div class="modal-dialog">
-						      <div class="modal-content">
-						        <div class="modal-header">
-						          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						          <h4 class="modal-title"><?echo"$data3[nama]";?></h4>
-						        </div>
-						        <div class="modal-body">
-						          <p><img class="img-responsive" src="admin/images/<?echo"$data3[gambar]";?>" alt=""></p>
-						          <p><?echo"$data3[keterangan]";?></p>
-						          <p><b><a href="<?echo"$data3[alamat]";?>" target="_blank">Visit Site</a></b></p>
-						        </div>
-						        <div class="modal-footer">
-						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						        </div>
-						      </div><!-- /.modal-content -->
-						    </div><!-- /.modal-dialog -->
-						  </div><!-- /.modal -->
-				
-<?}?>	
+<?php
+}
+?>		
 	
 
           </div>
@@ -927,7 +891,7 @@ while($data3=mysql_fetch_array($ambildata3))
 		<!--<div id="greywrap">-->
 		    <!--<div id="footerwrap">-->
 		<!--	<div class="container">-->
-				<!--<h4> &copy Copyright <?$a=date("Y");echo"$a";?> <i class="icon icon-shield"><b> FlatStudioWeb</b></i></h4>-->
+				<!--<h4> &copy Copyright <i class="icon icon-shield"><b> FlatStudioWeb</b></i></h4>-->
 				
 		<!--	</div>-->
 		<!--</div>-->
